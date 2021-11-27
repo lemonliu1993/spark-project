@@ -32,8 +32,15 @@ object Spark01_WordCount {
     //4.对分组后的数据进行转换
     //  (hello,hello,hello),(world,world)
     //  (hello,3),(world,2)
+    val wordToCount = wordGroip.map {
+      case (word, list) => {
+        (word, list.size)
+      }
+    }
 
     //5.将转换结果采集到控制台打印出来
+    val array: Array[(String, Int)] = wordToCount.collect()
+    array.foreach(println)
 
     //TODO 关闭连接
     sc.stop()
